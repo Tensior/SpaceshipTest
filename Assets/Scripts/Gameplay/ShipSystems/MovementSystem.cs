@@ -10,11 +10,7 @@ namespace Gameplay.ShipSystems
         private float _lateralMovementSpeed;
         
         [SerializeField]
-        private float _longitudinalMovementSpeed;
-
-        [SerializeField]
-        private bool _restrictByGameArea = false;
-    
+        private float _longitudinalMovementSpeed;    
 
         public void LateralMovement(float amount)
         {
@@ -27,15 +23,9 @@ namespace Gameplay.ShipSystems
         }
 
         
-        private void Move(float amount, Vector3 axis)
+        protected virtual void Move(float amount, Vector3 axis)
         {
-            var newPosition = transform.position + transform.TransformVector( amount * axis.normalized );
-            if ( _restrictByGameArea && !GameAreaHelper.IsInGameplayArea( newPosition ) )
-            {
-                return;
-            }
-            //transform.Translate( amount * axis.normalized );
-            transform.position = newPosition;
+            transform.Translate( amount * axis.normalized );
         }
     }
 }

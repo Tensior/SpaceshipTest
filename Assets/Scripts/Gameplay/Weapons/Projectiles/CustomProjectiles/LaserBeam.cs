@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Gameplay.Weapons.Projectiles;
+﻿using Gameplay.Weapons.Projectiles;
 using UnityEngine;
 
 public class LaserBeam : Projectile

@@ -7,7 +7,7 @@ namespace Gameplay.ShipControllers
     public abstract class ShipController : MonoBehaviour
     {
 
-        private ISpaceship _spaceship;
+        protected ISpaceship _spaceship;
 
 
         public void Init(ISpaceship spaceship)

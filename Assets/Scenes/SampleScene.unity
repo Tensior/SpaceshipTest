@@ -139,6 +139,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner3
       objectReference: {fileID: 0}
+    - target: {fileID: 7139034145302338192, guid: c2e57a14d12b5bc4fba0a39e34406cab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7139034145302338193, guid: c2e57a14d12b5bc4fba0a39e34406cab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -199,6 +204,12 @@ PrefabInstance:
       propertyPath: _parent
       value: 
       objectReference: {fileID: 1623967835}
+    - target: {fileID: 7139034145302338194, guid: c2e57a14d12b5bc4fba0a39e34406cab,
+        type: 3}
+      propertyPath: _object
+      value: 
+      objectReference: {fileID: 590599124999967857, guid: c2f7d29ccf40de44d81e56cc718f5e0e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2e57a14d12b5bc4fba0a39e34406cab, type: 3}
 --- !u!4 &475596461 stripped
@@ -302,6 +313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner2
       objectReference: {fileID: 0}
+    - target: {fileID: 7139034145302338192, guid: c2e57a14d12b5bc4fba0a39e34406cab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7139034145302338193, guid: c2e57a14d12b5bc4fba0a39e34406cab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -362,6 +378,12 @@ PrefabInstance:
       propertyPath: _parent
       value: 
       objectReference: {fileID: 1623967835}
+    - target: {fileID: 7139034145302338194, guid: c2e57a14d12b5bc4fba0a39e34406cab,
+        type: 3}
+      propertyPath: _object
+      value: 
+      objectReference: {fileID: 7862372519964210668, guid: dbe3fc91d4ca010468cce25355613683,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2e57a14d12b5bc4fba0a39e34406cab, type: 3}
 --- !u!4 &525058029 stripped
@@ -1307,16 +1329,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSpaceship
       objectReference: {fileID: 0}
-    - target: {fileID: 6910651213156479314, guid: db160e65d2bc1c043828d51dfbc352da,
-        type: 3}
-      propertyPath: _restrictByGameArea
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6910651213156479315, guid: db160e65d2bc1c043828d51dfbc352da,
-        type: 3}
-      propertyPath: _maxHealth
-      value: 1000
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db160e65d2bc1c043828d51dfbc352da, type: 3}
 --- !u!1001 &7139034146379299536
@@ -1330,6 +1342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spawner1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139034145302338192, guid: c2e57a14d12b5bc4fba0a39e34406cab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7139034145302338193, guid: c2e57a14d12b5bc4fba0a39e34406cab,
         type: 3}
@@ -1391,5 +1408,11 @@ PrefabInstance:
       propertyPath: _parent
       value: 
       objectReference: {fileID: 1623967835}
+    - target: {fileID: 7139034145302338194, guid: c2e57a14d12b5bc4fba0a39e34406cab,
+        type: 3}
+      propertyPath: _object
+      value: 
+      objectReference: {fileID: 4329315924987782076, guid: 9096ab2fb62216849abe5363dea2b6ee,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2e57a14d12b5bc4fba0a39e34406cab, type: 3}

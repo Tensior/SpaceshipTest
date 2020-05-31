@@ -28,13 +28,7 @@ namespace Gameplay.Helpers
             }
         }
 
-        public static bool IsInGameplayArea( Vector3 objectPos )
-        {
-            var zeroBounds = new Bounds( Vector3.zero, Vector3.zero );
-            return IsInGameplayArea( objectPos, zeroBounds );
-        }
-
-        public static bool IsInGameplayArea(Vector3 objectPos, Bounds objectBounds)
+        public static bool IsInGameplayArea(Vector3 objectPos, Bounds objectBounds, bool boundsInArea = false)
         {
             var camHalfHeight = MainCamera.orthographicSize;
             var camHalfWidth = camHalfHeight * MainCamera.aspect;
@@ -44,10 +38,12 @@ namespace Gameplay.Helpers
             var leftBound = camPos.x - camHalfWidth;
             var rightBound = camPos.x + camHalfWidth;
 
-            return (objectPos.x - objectBounds.extents.x < rightBound)
-                && (objectPos.x + objectBounds.extents.x > leftBound)
-                && (objectPos.y - objectBounds.extents.y < topBound)
-                && (objectPos.y + objectBounds.extents.y > bottomBound);
+            int boundsSign = boundsInArea ? -1 : 1;
+
+            return (objectPos.x - objectBounds.extents.x * boundsSign < rightBound)
+                && (objectPos.x + objectBounds.extents.x * boundsSign > leftBound)
+                && (objectPos.y - objectBounds.extents.y * boundsSign < topBound)
+                && (objectPos.y + objectBounds.extents.y * boundsSign > bottomBound);
 
         }
         
