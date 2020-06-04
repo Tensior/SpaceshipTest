@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace Gameplay.ShipControllers
 {
+    // Base class for movement and fire controls of a spaceship
     public abstract class ShipController : MonoBehaviour
     {
 
-        protected ISpaceship _spaceship;
+        protected ISpaceship _spaceship; //reference to the spaceship object it controls
 
 
         public void Init(ISpaceship spaceship)
@@ -22,8 +23,10 @@ namespace Gameplay.ShipControllers
             ProcessFire(_spaceship.WeaponSystem);
         }
 
-
+        // Implements movement during one frame
         protected abstract void ProcessHandling(MovementSystem movementSystem);
+
+        // Implements firing during one frame
         protected abstract void ProcessFire(WeaponSystem fireSystem);
     }
 }

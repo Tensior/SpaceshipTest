@@ -1,16 +1,16 @@
 ﻿using Gameplay.ShipSystems;
-using Gameplay.Helpers;
 using UnityEngine;
 
 namespace Gameplay.ShipControllers.CustomControllers
 {
+    // Implements movement and fire control for player spaceship
     public class PlayerShipController : ShipController
     {
         [SerializeField]
-        private ControlType controlType;
+        private ControlType controlType; //allows to choose between keyboard and mouse control schemas
 
-        private KeyCode _fire;
-        private string _movement;
+        private KeyCode _fire; //keycode for fire button
+        private string _horizontalMovement; //axis name for horizontal movement
 
         private void Awake()
         {
@@ -18,20 +18,22 @@ namespace Gameplay.ShipControllers.CustomControllers
             {
                 case ControlType.Keyboard:
                     _fire = KeyCode.Space;
-                    _movement = "HorizontalArrows";
+                    _horizontalMovement = "HorizontalArrows";
                     break;
                 case ControlType.Mouse:
                     _fire = KeyCode.Mouse0;
-                    _movement = "HorizontalMouse";
+                    _horizontalMovement = "HorizontalMouse";
                     break;
             }
         }
 
+        // Passes player input to movement system
         protected override void ProcessHandling(MovementSystem movementSystem)
         {
-            movementSystem.LateralMovement( Input.GetAxis( _movement ) * Time.deltaTime );
+            movementSystem.LateralMovement( Input.GetAxis( _horizontalMovement ) * Time.deltaTime );
         }
 
+        // Passes player input to weapon system
         protected override void ProcessFire(WeaponSystem fireSystem)
         {
             if (Input.GetKey( _fire ) )
@@ -41,6 +43,7 @@ namespace Gameplay.ShipControllers.CustomControllers
         }
     }
 
+    // enum for 2 control schemas
     public enum ControlType
     {
         Keyboard,

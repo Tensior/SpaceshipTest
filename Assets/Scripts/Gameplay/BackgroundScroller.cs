@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// Makes background seem moving
 public class BackgroundScroller : MonoBehaviour
 {
     [SerializeField]
-    private float _scrollSpeed;
+    private float _scrollSpeed; //speed of background
 
-    private Material _material;
+    private Material _material; //material of the background
 
     private void Awake()
     {
         _material = GetComponent<Renderer>().material;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        //just offset texture by Y
         _material.mainTextureOffset += new Vector2( 0f, _scrollSpeed * Time.deltaTime );
     }
 

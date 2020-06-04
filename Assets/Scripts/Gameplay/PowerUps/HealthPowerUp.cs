@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace Gameplay.PowerUps
 {
+    // Powerup which increases current health
     public class HealthPowerUp : MonoBehaviour
     {
 
         [SerializeField]
-        private float _healthAmount;
+        private float _healthAmount; //healed amount
 
         [SerializeField]
-        private float _speed;
+        private float _speed; //fall speed for the powerup game object
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
             transform.Translate( Vector3.up * Time.deltaTime * _speed );
         }
@@ -28,6 +28,7 @@ namespace Gameplay.PowerUps
             }
         }
 
+        // Actual effect which powerup has on entity it was applied to
         public void ApplyTo( IDamagable damagable )
         {
             damagable.ModifyHealth( _healthAmount );

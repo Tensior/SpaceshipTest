@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace Gameplay.Spaceships
 {
+    // Provides realization for different spaceship systems and interfaces
     public class Spaceship : MonoBehaviour, ISpaceship, IDamagable, IArmed
     {
         [SerializeField]

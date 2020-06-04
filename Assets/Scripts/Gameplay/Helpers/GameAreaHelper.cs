@@ -2,14 +2,16 @@
 
 namespace Gameplay.Helpers
 {
+    // Tells whether or not an object is in camera field of view
     public static class GameAreaHelper
     {
 
-        private static Camera _camera;
+        private static Camera _camera; //cached current camera
 
-        private static readonly object CameraLock = new object();
+        private static readonly object CameraLock = new object(); //used for thread safety
 
-        //Need some way to reinit camera when the scene is reloaded
+        // Cashes and returns main camera (with thread-safety and double check)
+        // Also reinits camera when the scene is reloaded
         private static Camera MainCamera
         {
             get
@@ -28,6 +30,8 @@ namespace Gameplay.Helpers
             }
         }
 
+        // Says if an object with given position is in gameplay area including/not including
+        // its boundaries based on the boundsInArea flag (by default object must be completely out to get false)
         public static bool IsInGameplayArea(Vector3 objectPos, Bounds objectBounds, bool boundsInArea = false)
         {
             var camHalfHeight = MainCamera.orthographicSize;
