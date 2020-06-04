@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Weapons.Projectiles
 {
-    public abstract class Projectile : MonoBehaviour, IDamageDealer
+    public class Projectile : MonoBehaviour, IDamageDealer
     {
 
         [SerializeField]
@@ -30,7 +30,7 @@ namespace Gameplay.Weapons.Projectiles
 
         private void Update()
         {
-            Move(_speed);
+            Move( _speed );
         }
 
         
@@ -41,12 +41,14 @@ namespace Gameplay.Weapons.Projectiles
             if (damagableObject != null 
                 && damagableObject.BattleIdentity != BattleIdentity)
             {
-                damagableObject.ApplyDamage(this);
+                damagableObject.ModifyHealth( -_damage );
             }
         }
-        
 
 
-        protected abstract void Move(float speed);
+        protected virtual void Move( float speed )
+        {
+            transform.Translate( speed * Time.deltaTime * Vector3.up );
+        }
     }
 }

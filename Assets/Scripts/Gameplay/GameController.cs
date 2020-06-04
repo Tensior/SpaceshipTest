@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using Gameplay.Spaceships;
+using UnityEngine.Events;
 
 namespace Gameplay
 {
@@ -37,17 +39,15 @@ namespace Gameplay
                 Destroy( gameObject );
             }
 
+            Spaceship.OnEnemySpaceshipFullyDamaged += Instance.EnemySpaceshipFullyDamaged;
+            Spaceship.OnPlayerSpaceshipFullyDamaged += Instance.GameOver;
+
         }
 
         private void Start()
         {
             _scoreAmount = 0;
             UpdateScore( 0 );
-        }
-
-        private void Update()
-        {
-
         }
 
         public void UpdateScore( int addValue )
@@ -61,17 +61,28 @@ namespace Gameplay
             _playerHealthText.text = currentHealth + " / " + maxHealth + " health";
         }
 
-        public void RestartGame()
+        private void EnemySpaceshipFullyDamaged( Transform transform )
         {
-            SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+            Instance.UpdateScore( 1 );
         }
 
-        public void GameOver()
+        private void GameOver()
         {
             _gameArea.SetActive( false );
 
             _gameOverUI.SetActive( true );
             _finalScoreText.text = "Final score: " + _scoreAmount;
+        }
+
+        public void RestartGame()
+        {
+            SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+        }
+
+        private void OnDisable()
+        {
+            Spaceship.OnEnemySpaceshipFullyDamaged -= Instance.EnemySpaceshipFullyDamaged;
+            Spaceship.OnPlayerSpaceshipFullyDamaged -= Instance.GameOver;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Gameplay.Weapons
 
         float CurrentHealth { get; }
 
-        void ApplyDamage(IDamageDealer damageDealer);
+        void ModifyHealth( float amount );
 
         void FullyDamaged();
 

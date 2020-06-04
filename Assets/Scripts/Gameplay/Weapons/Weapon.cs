@@ -16,6 +16,8 @@ namespace Gameplay.Weapons
         [SerializeField]
         private float _cooldown;
 
+        private float _originalCooldown;
+
 
         private bool _readyToFire = true;
         private UnitBattleIdentity _battleIdentity;
@@ -25,6 +27,7 @@ namespace Gameplay.Weapons
         public void Init(UnitBattleIdentity battleIdentity)
         {
             _battleIdentity = battleIdentity;
+            _originalCooldown = _cooldown;
         }
         
         
@@ -36,6 +39,16 @@ namespace Gameplay.Weapons
             var proj = Instantiate(_projectile, _barrel.position, _barrel.rotation);
             proj.Init(_battleIdentity);
             StartCoroutine(Reload(_cooldown));
+        }
+
+        public void MultiplyFireRate( float multiplier )
+        {
+            _cooldown = _originalCooldown / multiplier;
+        }
+
+        public void RestoreOriginalFireRate()
+        {
+            _cooldown = _originalCooldown;
         }
 
 

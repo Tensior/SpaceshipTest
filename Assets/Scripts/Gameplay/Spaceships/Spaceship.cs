@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace Gameplay.Spaceships
 {
-    public class Spaceship : MonoBehaviour, ISpaceship, IDamagable
+    public class Spaceship : MonoBehaviour, ISpaceship, IDamagable, IArmed
     {
         [SerializeField]
         private ShipController _shipController;
@@ -35,6 +35,9 @@ namespace Gameplay.Spaceships
 
         public float CurrentHealth => _currentHealth;
 
+        public static UnityAction<Transform> OnEnemySpaceshipFullyDamaged;
+        public static UnityAction OnPlayerSpaceshipFullyDamaged;
+
         private void Start()
         {
             _shipController.Init(this);
@@ -45,10 +48,10 @@ namespace Gameplay.Spaceships
                 GameController.Instance.UpdatePlayerHealth( _currentHealth, _maxHealth );
             }
         }
-
-        public void ApplyDamage(IDamageDealer damageDealer)
+        
+        public void ModifyHealth( float amount )
         {
-            _currentHealth -= damageDealer.Damage;
+            _currentHealth = Mathf.Min( _maxHealth, _currentHealth + amount );
             if ( _battleIdentity == UnitBattleIdentity.Ally )
             {
                 GameController.Instance.UpdatePlayerHealth( _currentHealth, _maxHealth );
@@ -63,14 +66,23 @@ namespace Gameplay.Spaceships
         {
             if ( _battleIdentity == UnitBattleIdentity.Enemy )
             {
-                GameController.Instance.UpdateScore( 1 );
+                OnEnemySpaceshipFullyDamaged?.Invoke( this.transform );
             }
             if ( _battleIdentity == UnitBattleIdentity.Ally )
             {
-                GameController.Instance.GameOver();
+                OnPlayerSpaceshipFullyDamaged?.Invoke();
             }
             Destroy( gameObject );
         }
 
+        public void MultiplyFireRate(float multiplier)
+        {
+            _weaponSystem.MultiplyFireRate( multiplier );
+        }
+
+        public void RestoreOriginalFireRate()
+        {
+            _weaponSystem.RestoreOriginalFireRate();
+        }
     }
 }
